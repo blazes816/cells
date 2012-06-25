@@ -12,6 +12,14 @@ module Cells
       Cell::Base.setup_view_paths!
     end
     
+    initializer "cells.autoload", :before => :set_autoload_paths do |app|
+      Cell::Base.view_paths.map(&:to_s).each do |path|
+        Dir["#{path}/**/"].each do |file|
+          app.config.autoload_paths += [file]
+        end
+      end
+    end
+    
     initializer "cells.setup_engines_view_paths" do |app|
       Cells::Engines.append_engines_view_paths_for(app.config.action_controller)
     end

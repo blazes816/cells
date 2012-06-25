@@ -42,5 +42,18 @@ module Cell
     def cache_store
       self.class.cache_store  # in Rails, we have a global cache store.
     end
+
+    # Override _prefixes so we get hierarchial prefixes instead of flat ones
+    def _prefixes
+      @_prefixes ||=  begin
+        flat_prefixes = super.reverse
+        
+        [].tap do |prefixes|
+          flat_prefixes.length.downto(0) do |p|
+            prefixes << "#{flat_prefixes[0, p].join('/')}/views"
+          end
+        end
+      end
+    end
   end
 end

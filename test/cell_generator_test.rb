@@ -10,88 +10,88 @@ class CellGeneratorTest < Rails::Generators::TestCase
     should "create the standard assets" do
       run_generator %w(Blog post latest)
 
-      assert_file "app/cells/blog_cell.rb", /class BlogCell < Cell::Rails/
-      assert_file "app/cells/blog_cell.rb", /def post/
-      assert_file "app/cells/blog_cell.rb", /def latest/
-      assert_file "app/cells/blog/post.html.erb", %r(app/cells/blog/post\.html\.erb)
-      assert_file "app/cells/blog/post.html.erb", %r(<p>)
-      assert_file "app/cells/blog/latest.html.erb", %r(app/cells/blog/latest\.html\.erb)
+      assert_file "app/cells/blog/blog_cell.rb", /class BlogCell < Cell::Rails/
+      assert_file "app/cells/blog/blog_cell.rb", /def post/
+      assert_file "app/cells/blog/blog_cell.rb", /def latest/
+      assert_file "app/cells/blog/views/post.html.erb", %r(app/cells/blog/post\.html\.erb)
+      assert_file "app/cells/blog/views/post.html.erb", %r(<p>)
+      assert_file "app/cells/blog/views/latest.html.erb", %r(app/cells/blog/latest\.html\.erb)
 
 
-      assert_no_file "app/cells/blog/post.html.haml"
-      assert_no_file "app/cells/blog/post.html.haml"
-      assert_no_file "app/cells/blog/latest.html.haml"
+      assert_no_file "app/cells/blog/views/post.html.haml"
+      assert_no_file "app/cells/blog/views/post.html.haml"
+      assert_no_file "app/cells/blog/views/latest.html.haml"
 
-      assert_no_file "app/cells/blog/post.html.slim"
-      assert_no_file "app/cells/blog/post.html.slim"
-      assert_no_file "app/cells/blog/latest.html.slim"
+      assert_no_file "app/cells/blog/views/post.html.slim"
+      assert_no_file "app/cells/blog/views/post.html.slim"
+      assert_no_file "app/cells/blog/views/latest.html.slim"
     end
 
     should "create cell that inherits from custom cell class if specified" do
       run_generator %w(Blog --base-cell-class=ApplicationCell)
-      assert_file "app/cells/blog_cell.rb", /class BlogCell < ApplicationCell/
+      assert_file "app/cells/blog/blog_cell.rb", /class BlogCell < ApplicationCell/
     end
     
     should "work with namespaces" do
       run_generator %w(Blog::Post latest)
 
-      assert_file "app/cells/blog/post_cell.rb", /class Blog::PostCell < Cell::Rails/
-      assert_file "app/cells/blog/post_cell.rb", /def latest/
-      assert_file "app/cells/blog/post/latest.html.erb", %r(app/cells/blog/post/latest\.html\.erb)
+      assert_file "app/cells/blog/post/post_cell.rb", /class Blog::PostCell < Cell::Rails/
+      assert_file "app/cells/blog/post/post_cell.rb", /def latest/
+      assert_file "app/cells/blog/post/views/latest.html.erb", %r(app/cells/blog/post/latest\.html\.erb)
     end
     
     should "work with namespaces and haml" do
       run_generator %w(Blog::Post latest -e haml)
 
-      assert_file "app/cells/blog/post_cell.rb", /class Blog::PostCell < Cell::Rails/
-      assert_file "app/cells/blog/post/latest.html.haml", %r(app/cells/blog/post/latest\.html\.haml)
+      assert_file "app/cells/blog/post/post_cell.rb", /class Blog::PostCell < Cell::Rails/
+      assert_file "app/cells/blog/post/views/latest.html.haml", %r(app/cells/blog/post/latest\.html\.haml)
     end
 
     should "work with namespaces and slim" do
       run_generator %w(Blog::Post latest -e slim)
 
-      assert_file "app/cells/blog/post_cell.rb", /class Blog::PostCell < Cell::Rails/
-      assert_file "app/cells/blog/post/latest.html.slim", %r(app/cells/blog/post/latest\.html\.slim)
+      assert_file "app/cells/blog/post/post_cell.rb", /class Blog::PostCell < Cell::Rails/
+      assert_file "app/cells/blog/post/views/latest.html.slim", %r(app/cells/blog/post/latest\.html\.slim)
     end
 
     should "create slim assets with -e slim" do
       run_generator %w(Blog post latest -e slim)
 
-      assert_file "app/cells/blog_cell.rb", /class BlogCell < Cell::Rails/
-      assert_file "app/cells/blog_cell.rb", /def post/
-      assert_file "app/cells/blog_cell.rb", /def latest/
-      assert_file "app/cells/blog/post.html.slim", %r(app/cells/blog/post\.html\.slim)
-      assert_file "app/cells/blog/post.html.slim", %r(p)
-      assert_file "app/cells/blog/latest.html.slim", %r(app/cells/blog/latest\.html\.slim)
+      assert_file "app/cells/blog/blog_cell.rb", /class BlogCell < Cell::Rails/
+      assert_file "app/cells/blog/blog_cell.rb", /def post/
+      assert_file "app/cells/blog/blog_cell.rb", /def latest/
+      assert_file "app/cells/blog/views/post.html.slim", %r(app/cells/blog/post\.html\.slim)
+      assert_file "app/cells/blog/views/post.html.slim", %r(p)
+      assert_file "app/cells/blog/views/latest.html.slim", %r(app/cells/blog/latest\.html\.slim)
 
 
-      assert_no_file "app/cells/blog/post.html.erb"
-      assert_no_file "app/cells/blog/post.html.erb"
-      assert_no_file "app/cells/blog/latest.html.erb"
+      assert_no_file "app/cells/blog/views/post.html.erb"
+      assert_no_file "app/cells/blog/views/post.html.erb"
+      assert_no_file "app/cells/blog/views/latest.html.erb"
 
-      assert_no_file "app/cells/blog/post.html.haml"
-      assert_no_file "app/cells/blog/post.html.haml"
-      assert_no_file "app/cells/blog/latest.html.haml"
+      assert_no_file "app/cells/blog/views/post.html.haml"
+      assert_no_file "app/cells/blog/views/post.html.haml"
+      assert_no_file "app/cells/blog/views/latest.html.haml"
     end
 
     should "create haml assets with -e haml" do
       run_generator %w(Blog post latest -e haml)
 
-      assert_file "app/cells/blog_cell.rb", /class BlogCell < Cell::Rails/
-      assert_file "app/cells/blog_cell.rb", /def post/
-      assert_file "app/cells/blog_cell.rb", /def latest/
-      assert_file "app/cells/blog/post.html.haml", %r(app/cells/blog/post\.html\.haml)
-      assert_file "app/cells/blog/post.html.haml", %r(%p)
-      assert_file "app/cells/blog/latest.html.haml", %r(app/cells/blog/latest\.html\.haml)
+      assert_file "app/cells/blog/blog_cell.rb", /class BlogCell < Cell::Rails/
+      assert_file "app/cells/blog/blog_cell.rb", /def post/
+      assert_file "app/cells/blog/blog_cell.rb", /def latest/
+      assert_file "app/cells/blog/views/post.html.haml", %r(app/cells/blog/post\.html\.haml)
+      assert_file "app/cells/blog/views/post.html.haml", %r(%p)
+      assert_file "app/cells/blog/views/latest.html.haml", %r(app/cells/blog/latest\.html\.haml)
 
 
-      assert_no_file "app/cells/blog/post.html.erb"
-      assert_no_file "app/cells/blog/post.html.erb"
-      assert_no_file "app/cells/blog/latest.html.erb"
+      assert_no_file "app/cells/blog/views/post.html.erb"
+      assert_no_file "app/cells/blog/views/post.html.erb"
+      assert_no_file "app/cells/blog/views/latest.html.erb"
 
-      assert_no_file "app/cells/blog/post.html.slim"
-      assert_no_file "app/cells/blog/post.html.slim"
-      assert_no_file "app/cells/blog/latest.html.slim"
+      assert_no_file "app/cells/blog/views/post.html.slim"
+      assert_no_file "app/cells/blog/views/post.html.slim"
+      assert_no_file "app/cells/blog/views/latest.html.slim"
     end
 
     should "create test_unit assets with -t test_unit" do
