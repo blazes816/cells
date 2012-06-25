@@ -1,7 +1,7 @@
 require 'test_helper'
-require 'app/cells/club_security'
-require 'app/cells/club_security/guard_cell'
-require 'app/cells/club_security/medic_cell'
+require 'app/cells/club_security/club_security'
+require 'app/cells/club_security/guard/guard_cell'
+require 'app/cells/club_security/medic/medic_cell'
 
 module StringHelper
   def pick; "plong"; end

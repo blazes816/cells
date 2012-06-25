@@ -13,9 +13,9 @@ class CellGeneratorTest < Rails::Generators::TestCase
       assert_file "app/cells/blog/blog_cell.rb", /class BlogCell < Cell::Rails/
       assert_file "app/cells/blog/blog_cell.rb", /def post/
       assert_file "app/cells/blog/blog_cell.rb", /def latest/
-      assert_file "app/cells/blog/views/post.html.erb", %r(app/cells/blog/post\.html\.erb)
+      assert_file "app/cells/blog/views/post.html.erb", %r(app/cells/blog/views/post\.html\.erb)
       assert_file "app/cells/blog/views/post.html.erb", %r(<p>)
-      assert_file "app/cells/blog/views/latest.html.erb", %r(app/cells/blog/latest\.html\.erb)
+      assert_file "app/cells/blog/views/latest.html.erb", %r(app/cells/blog/views/latest\.html\.erb)
 
 
       assert_no_file "app/cells/blog/views/post.html.haml"
@@ -37,21 +37,21 @@ class CellGeneratorTest < Rails::Generators::TestCase
 
       assert_file "app/cells/blog/post/post_cell.rb", /class Blog::PostCell < Cell::Rails/
       assert_file "app/cells/blog/post/post_cell.rb", /def latest/
-      assert_file "app/cells/blog/post/views/latest.html.erb", %r(app/cells/blog/post/latest\.html\.erb)
+      assert_file "app/cells/blog/post/views/latest.html.erb", %r(app/cells/blog/post/views/latest\.html\.erb)
     end
     
     should "work with namespaces and haml" do
       run_generator %w(Blog::Post latest -e haml)
 
       assert_file "app/cells/blog/post/post_cell.rb", /class Blog::PostCell < Cell::Rails/
-      assert_file "app/cells/blog/post/views/latest.html.haml", %r(app/cells/blog/post/latest\.html\.haml)
+      assert_file "app/cells/blog/post/views/latest.html.haml", %r(app/cells/blog/post/views/latest\.html\.haml)
     end
 
     should "work with namespaces and slim" do
       run_generator %w(Blog::Post latest -e slim)
 
       assert_file "app/cells/blog/post/post_cell.rb", /class Blog::PostCell < Cell::Rails/
-      assert_file "app/cells/blog/post/views/latest.html.slim", %r(app/cells/blog/post/latest\.html\.slim)
+      assert_file "app/cells/blog/post/views/latest.html.slim", %r(app/cells/blog/post/views/latest\.html\.slim)
     end
 
     should "create slim assets with -e slim" do
@@ -60,9 +60,9 @@ class CellGeneratorTest < Rails::Generators::TestCase
       assert_file "app/cells/blog/blog_cell.rb", /class BlogCell < Cell::Rails/
       assert_file "app/cells/blog/blog_cell.rb", /def post/
       assert_file "app/cells/blog/blog_cell.rb", /def latest/
-      assert_file "app/cells/blog/views/post.html.slim", %r(app/cells/blog/post\.html\.slim)
+      assert_file "app/cells/blog/views/post.html.slim", %r(app/cells/blog/views/post\.html\.slim)
       assert_file "app/cells/blog/views/post.html.slim", %r(p)
-      assert_file "app/cells/blog/views/latest.html.slim", %r(app/cells/blog/latest\.html\.slim)
+      assert_file "app/cells/blog/views/latest.html.slim", %r(app/cells/blog/views/latest\.html\.slim)
 
 
       assert_no_file "app/cells/blog/views/post.html.erb"
@@ -80,9 +80,9 @@ class CellGeneratorTest < Rails::Generators::TestCase
       assert_file "app/cells/blog/blog_cell.rb", /class BlogCell < Cell::Rails/
       assert_file "app/cells/blog/blog_cell.rb", /def post/
       assert_file "app/cells/blog/blog_cell.rb", /def latest/
-      assert_file "app/cells/blog/views/post.html.haml", %r(app/cells/blog/post\.html\.haml)
+      assert_file "app/cells/blog/views/post.html.haml", %r(app/cells/blog/views/post\.html\.haml)
       assert_file "app/cells/blog/views/post.html.haml", %r(%p)
-      assert_file "app/cells/blog/views/latest.html.haml", %r(app/cells/blog/latest\.html\.haml)
+      assert_file "app/cells/blog/views/latest.html.haml", %r(app/cells/blog/views/latest\.html\.haml)
 
 
       assert_no_file "app/cells/blog/views/post.html.erb"
