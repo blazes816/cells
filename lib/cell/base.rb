@@ -45,6 +45,12 @@ module Cell
         return controller.render(*args, &block) if options[:state] or options[:view]
         super
       end
+      
+      # If we have a controller, access its class' asset environment
+      def asset_environment
+        return super if controller.nil?
+        controller.class.asset_environment
+      end
     end
     
     
