@@ -139,7 +139,7 @@ class RailsRenderTest < ActiveSupport::TestCase
           render_cell(:bad_guitarist, :groove)
         end
         
-        assert_includes e.message, "Missing template bad_guitarist/groove, bassist/groove with"
+        assert_includes e.message, "Missing template bassist/bad_guitarist/views/groove, bassist/views/groove, views/groove with"
       end
     end
     
